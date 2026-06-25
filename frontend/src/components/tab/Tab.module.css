@@ -1,29 +1,25 @@
 .tabContainer {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     
-    padding: 12px;
-    border: 1px solid blue;
+    padding: 16px 24px;
 }
 
 .tabContainer button {
-    padding: 8px;
+    padding: 8px 20px;
     border: none;
     font-size: 14px;
-    background-color: #FFFFFF;
-    border: 1px solid #424242;
-    border-radius: 6px;
+    background-color: #EDE1DE;
+    border-radius: 8px;
     cursor: pointer;
 
     transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
 .tabContainer button:hover {
-    background-color: #4c4fff;
+    background-color: #865346;
     color: #FFFFFF;
-    border: 1px solid #4c4fff;
 }
 
 .tabContainer button:active {
@@ -31,7 +27,6 @@
 }
 
 .tabContainer button.active {
-    background-color: #4c4fff;
-    border: 1px solid #4c4fff;
+    background-color: #865346;
     color: #FFFFFF;
 }

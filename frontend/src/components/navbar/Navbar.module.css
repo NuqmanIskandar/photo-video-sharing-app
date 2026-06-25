@@ -1,5 +1,77 @@
 .navbarContainer {
     width: 100%;
-    padding: 8px;
-    border: 1px solid red;
+    padding: 10px;
+    border-bottom: 1px solid #E8DDD7;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.logoContainer {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logoContainer p {
+    font-size: 24px;
+    font-weight: 900;
+    color: #111827;
+}
+
+.rightContainer {
+    margin-left: auto;
+    display: flex;
+    padding: 0 16px;
+    gap: 12px;
+    align-items: center;
+}
+
+.rightContainer button {
+    padding: 10px 18px;
+    border: none;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: transform 0.1s ease, background-color 0.3s ease;
+}
+
+.rightContainer .signup {
+    background-color: #7F2C28;
+    color: #FFFFFF;
+}
+
+.rightContainer .login {
+    background-color: #FFFFFF;
+}
+
+.rightContainer .signup:hover {
+    background-color: #62211e;
+}
+
+.rightContainer .login:hover {
+    background-color: #eeeeee;
+}
+
+.rightContainer button:active {
+    transform: scale(0.925);
+}
+
+.rightContainer .logout {
+    background-color: #8F7074;
+    color: #FFFFFF;
+}
+
+.rightContainer .logout:hover {
+    background-color: #725A5D;
+}
+
+.rightContainer .userFullname {
+    color: #392D2E;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 0 14px;
 }

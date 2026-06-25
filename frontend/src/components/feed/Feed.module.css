@@ -1,7 +1,7 @@
 .feedContainer {
     column-count: 4;
     column-gap: 24px;
-    padding: 24px;
+    padding: 0 24px;
 }
 
 .card {
