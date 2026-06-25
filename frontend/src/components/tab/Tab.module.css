@@ -1,0 +1,37 @@
+.tabContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+    padding: 12px;
+    border: 1px solid blue;
+}
+
+.tabContainer button {
+    padding: 8px;
+    border: none;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid #424242;
+    border-radius: 6px;
+    cursor: pointer;
+
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.tabContainer button:hover {
+    background-color: #4c4fff;
+    color: #FFFFFF;
+    border: 1px solid #4c4fff;
+}
+
+.tabContainer button:active {
+    transform: scale(0.95);
+}
+
+.tabContainer button.active {
+    background-color: #4c4fff;
+    border: 1px solid #4c4fff;
+    color: #FFFFFF;
+}

@@ -1,0 +1,67 @@
+.feedContainer {
+    column-count: 4;
+    column-gap: 24px;
+    padding: 24px;
+}
+
+.card {
+    margin-bottom: 24px;
+    break-inside: avoid; /* prevents an item from splitting across columns */
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mediaWrapper {
+    position: relative;
+    overflow: hidden;       /* clips the scaled image so it doesn't poke outside rounded corners */
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.media {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+}
+
+.media:hover {
+    transform: scale(1.05);
+}
+
+.userBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* so it doesn't block clicks/video controls when hidden */
+}
+
+.mediaWrapper:hover .userBox {
+    opacity: 1;
+}
+
+.username {
+    font-weight: 900;
+    margin-right: 8px;
+    color: white;
+}
+
+.caption {
+    color: white;
+    font-weight: 200;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    font-size: 1em;
+}
+
+@media (max-width: 1200px) { .feedContainer { column-count: 3; } }
+@media (max-width: 800px)  { .feedContainer { column-count: 2; } }
+@media (max-width: 500px)  { .feedContainer { column-count: 1; } }

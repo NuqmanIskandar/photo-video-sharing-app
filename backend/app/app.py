@@ -6,6 +6,7 @@ from app.users import hash_password, authenticate_user, create_access_token, get
 from fastapi.security import OAuth2PasswordRequestForm
 from app.posts import upload_to_imagekit,add_to_database, get_posts, get_post_by_id, delete_from_imagekit, delete_post_from_database, get_all_posts
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
 import os, shutil, tempfile, uuid
 
 @asynccontextmanager
@@ -14,6 +15,18 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(title="Photo Video Sharing App", lifespan=lifespan)
+
+origins = [
+    "http://localhost:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ['*'],
+    allow_headers = ['*']
+)
 
 @app.get("/")
 def root():
