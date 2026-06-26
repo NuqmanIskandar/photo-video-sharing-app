@@ -3,7 +3,7 @@ import logo1 from "../../assets/logo1.svg"
 import { useAuth } from "../AuthContext/AuthContext";
 import { useState } from "react"
 
-const Login = ({ toggleLogin, toggleSignup, user, setUser }) => {
+const Login = ({ toggleLogin, toggleSignup, setUser }) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -83,9 +83,9 @@ const Login = ({ toggleLogin, toggleSignup, user, setUser }) => {
                                 />
                                 <span>Password</span>
                                 <input
-                                type="password"
-                                className={styles.password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                    type="password"
+                                    className={styles.password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                                 {errorMessage && (
                                     <span className={styles.errorMessage}>Invalid username or password</span>

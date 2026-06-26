@@ -32,8 +32,8 @@ const App = () => {
         <Tab feedFlag={feedFlag} setFeedFlag={setFeedFlag}/>
         <Feed/>
       </div>
-      {loginTab && <Login toggleLogin={toggleLogin} toggleSignup={toggleSignup} user={user} setUser={setUser}/>}
-      {signupTab && <Signup toggleSignup={toggleSignup}/>}
+      {loginTab && <Login toggleLogin={toggleLogin} toggleSignup={toggleSignup} setUser={setUser}/>}
+      {signupTab && <Signup toggleSignup={toggleSignup} setUser={setUser}/>}
     </AuthProvider>
   )
 }

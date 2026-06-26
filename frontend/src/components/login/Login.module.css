@@ -53,6 +53,6 @@
     padding: 8px 0;
 }
 
-.field .errorMessage {
+.loginTab .field .errorMessage {
     color: red;
 }
