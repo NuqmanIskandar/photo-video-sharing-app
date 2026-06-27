@@ -1,19 +1,6 @@
 import styles from "./Feed.module.css"
-import { useState, useEffect } from "react"
 
-const Feed = () => {
-
-    const [posts, setPosts] = useState([])
-    
-    const fetchFeed = async () => {
-        const response = await fetch("http://0.0.0.0:3000/feed")
-        const data = await response.json()
-        setPosts(data)
-    }
-
-    useEffect(() => {
-        fetchFeed()
-    }, [])
+const Feed = ({ posts }) => {
 
     return(
         <>
@@ -27,6 +14,7 @@ const Feed = () => {
                                     alt={post.caption}
                                     loading="lazy"
                                     className={styles.media}
+                                    draggable="false"
                                 />
                             ) : (
                                 <video

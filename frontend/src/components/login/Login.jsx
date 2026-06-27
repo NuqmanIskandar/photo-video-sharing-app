@@ -1,9 +1,9 @@
 import styles from "./Login.module.css"
 import logo1 from "../../assets/logo1.svg"
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
-const Login = ({ toggleLogin, toggleSignup, setUser }) => {
+const Login = ({ toggleLogin, toggleSignup }) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -34,33 +34,9 @@ const Login = ({ toggleLogin, toggleSignup, setUser }) => {
             const data = await res.json()
             login(data.access_token)
             toggleLogin()
-            fetchUser()
         } catch(err) {
             console.error("Login error:", err)
             setErrorMessage(true)
-        }
-    }
-
-    const fetchUser = async () => {
-        try {
-            const token = localStorage.getItem("token")
-
-            const res = await fetch("http://localhost:3000/me", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-
-            if (!res.ok) {
-                const errData = await res.json()
-                throw new Error(errData.detail || "Failed to fetch user")
-            }
-
-            const data = await res.json()
-            setUser(data)
-        } catch (err) {
-            console.error("Fetch user error:", err)
         }
     }
 

@@ -1,4 +1,4 @@
-.signupTab .overlay {
+.deleteTab .overlay {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -8,11 +8,11 @@
     position: fixed;
 }
 
-.signupTab .overlay {
+.deleteTab .overlay {
     background: rgba(49,49,49,0.8);
 }
 
-.signupTab .content {
+.deleteTab .content {
     position: fixed;
     top: 40%;
     left: 50%;
@@ -21,35 +21,22 @@
     background: #f1f1f1;
     padding: 14px 28px;
     border-radius: 3px;
-    max-width: 600px;
-    min-width: 300px;
-}
 
-.signupTab .closeButton {
-    margin-left: auto;
-}
-
-.signupTab .signupContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
-.signupTab .signupContainer .fieldWrapper {
+.deleteTab .content .buttonWrapper {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 12px;
 }
 
-.signupTab .signupContainer .fieldWrapper .field {
-    display: flex;
-    flex-direction: column;
-    padding: 12px 0;
-}
-
-.signupTab .signupContainer .fieldWrapper .field input {
-    padding: 2px 8px;
-    font-size: 14px;
+.deleteTab .content .buttonWrapper button {
+    padding: 4px;
+    font-size: 16px;
 }

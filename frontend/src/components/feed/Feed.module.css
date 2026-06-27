@@ -4,7 +4,7 @@
     padding: 0 24px;
 }
 
-.card {
+.feedContainer .card {
     margin-bottom: 24px;
     break-inside: avoid; /* prevents an item from splitting across columns */
     display: inline-block;
@@ -12,14 +12,14 @@
     box-sizing: border-box;
 }
 
-.mediaWrapper {
+.feedContainer .mediaWrapper {
     position: relative;
     overflow: hidden;       /* clips the scaled image so it doesn't poke outside rounded corners */
     border-radius: 12px;
     cursor: pointer;
 }
 
-.media {
+.feedContainer .media {
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -28,11 +28,11 @@
     transition: transform 0.5s ease;
 }
 
-.media:hover {
+.feedContainer .media:hover {
     transform: scale(1.05);
 }
 
-.userBox {
+.feedContainer .userBox {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -44,17 +44,17 @@
     pointer-events: none; /* so it doesn't block clicks/video controls when hidden */
 }
 
-.mediaWrapper:hover .userBox {
+.feedContainer .mediaWrapper:hover .userBox {
     opacity: 1;
 }
 
-.username {
+.feedContainer .username {
     font-weight: 900;
     margin-right: 8px;
     color: white;
 }
 
-.caption {
+.feedContainer .caption {
     color: white;
     font-weight: 200;
     overflow-wrap: break-word;

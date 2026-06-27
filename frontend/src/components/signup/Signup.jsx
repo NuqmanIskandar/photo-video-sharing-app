@@ -1,8 +1,8 @@
 import styles from "./Signup.module.css"
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
-const Signup = ({ toggleSignup, setUser }) => {
+const Signup = ({ toggleSignup }) => {
 
     const [username, setUsername] = useState("")
     const [fullName, setFullName] = useState("")
@@ -39,32 +39,8 @@ const Signup = ({ toggleSignup, setUser }) => {
             const loginData = await loginRes.json()
             login(loginData.access_token)
             toggleSignup()
-            fetchUser()
         } catch (err) {
             console.error("Signup error:", err)
-        }
-    }
-
-    const fetchUser = async () => {
-        try {
-            const token = localStorage.getItem("token")
-
-            const res = await fetch("http://localhost:3000/me", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-
-            if (!res.ok) {
-                const errData = await res.json()
-                throw new Error(errData.detail || "Failed to fetch user")
-            }
-
-            const data = await res.json()
-            setUser(data)
-        } catch (err) {
-            console.error("Fetch user error:", err)
         }
     }
 

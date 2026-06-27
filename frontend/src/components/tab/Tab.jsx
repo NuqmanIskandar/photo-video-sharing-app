@@ -1,8 +1,7 @@
 import styles from "./Tab.module.css"
 import { useAuth } from "../AuthContext/AuthContext";
-import { use } from "react";
 
-const Tab = ({ feedFlag, setFeedFlag }) => {
+const Tab = ({ feedFlag, setFeedFlag, toggleUpload }) => {
 
     const { isAuth } = useAuth()
 
@@ -23,7 +22,7 @@ const Tab = ({ feedFlag, setFeedFlag }) => {
                         >
                             My Posts
                         </button>
-                        <button>
+                        <button onClick={toggleUpload} className={styles.addButton}>
                             +
                         </button>
                     </>

@@ -1,10 +1,27 @@
 import styles from "./Navbar.module.css"
 import logo from "../../assets/logo.svg"
+import FetchUser from "../FetchUser"
 import { useAuth } from "../AuthContext/AuthContext"
+import { useEffect } from "react"
 
-const Navbar = ({ toggleLogin, toggleSignup, user }) => {
+const Navbar = ({ toggleLogin, toggleSignup, user, setUser, setFeedFlag }) => {
 
     const { isAuth, logout } = useAuth()
+
+    const handleLogout = () => {
+        logout()
+        setUser("")
+        setFeedFlag(true)
+    }
+
+    useEffect(() => {
+        if (isAuth) {
+            setUser("")
+            FetchUser({ setUser })
+        } else {
+            setUser("")
+        }
+    }, [isAuth])
 
     return (
         <>
@@ -16,7 +33,7 @@ const Navbar = ({ toggleLogin, toggleSignup, user }) => {
                 {isAuth ? (
                     <div className={styles.rightContainer}>
                         <span className={styles.userFullname}>{user.username}</span>
-                        <button onClick={logout} className={styles.logout}>Log out</button>
+                        <button onClick={handleLogout} className={styles.logout}>Log out</button>
                     </div>
                 ): (
                     <div className={styles.rightContainer}>
