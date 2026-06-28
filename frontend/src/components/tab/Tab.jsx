@@ -23,7 +23,7 @@ const Tab = ({ feedFlag, setFeedFlag, toggleUpload }) => {
                             My Posts
                         </button>
                         <button onClick={toggleUpload} className={styles.addButton}>
-                            +
+                            + 
                         </button>
                     </>
                 )}

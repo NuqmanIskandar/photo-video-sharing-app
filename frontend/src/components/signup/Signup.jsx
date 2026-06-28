@@ -50,29 +50,28 @@ const Signup = ({ toggleSignup }) => {
                 <div className={styles.overlay} onClick={toggleSignup}></div>
                 <div className={styles.content}>
                     <div className={styles.signupContainer}>
-                        <button onClick={toggleSignup} className={styles.closeButton}>X</button>
-                        <h2>Sign Up</h2>
-                        <p>Sign up to continue</p>
+                        <div className={styles.header}>
+                            <h2>Join the stash</h2>
+                            <p>Start saving your finds</p>
+                        </div>
                         <div className={styles.fieldWrapper}>
-                            <div className={styles.field}>
-                                <span>Username</span>
-                                <input
-                                    className={styles.username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                                <span>Full Name</span>
-                                <input
-                                    className={styles.fullName}
-                                    onChange={(e) => setFullName(e.target.value)}
-                                />
-                                <span>Password</span>
-                                <input
-                                    type="password"
-                                    className={styles.password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                            <button className={styles.signupButton} onClick={handleSignup}>Sign up</button>
+                            <input
+                                className={styles.username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="Username"
+                            />
+                            <input
+                                className={styles.fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                placeholder="Fullname"
+                            />
+                            <input
+                                type="password"
+                                className={styles.password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Password"
+                            />
+                           <button className={styles.signupButton} onClick={handleSignup}>Sign up</button>
                         </div>
                     </div>
                 </div>

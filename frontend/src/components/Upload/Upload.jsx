@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import styles from "./Upload.module.css"
 
 const Upload = ({ toggleUpload, onUploadSuccess }) => {
 
+    const fileInputRef = useRef(null)
     const [userFile, setUserFile] = useState(null)
     const [userCaption, setUserCaption] = useState("")
+    const [errorMessage, setErrorMessage] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]
@@ -14,8 +17,10 @@ const Upload = ({ toggleUpload, onUploadSuccess }) => {
     }
 
     const handleUpload = async () => {
+        setIsLoading(true)
         if (!userFile || !userCaption) {
             console.error("File and caption are required")
+            setErrorMessage(true)
             return
         }
         try {
@@ -43,9 +48,11 @@ const Upload = ({ toggleUpload, onUploadSuccess }) => {
             setUserCaption("")
             await onUploadSuccess()
             toggleUpload()
+            setIsLoading(false)
 
         } catch (err) {
             console.error("Error:", err)
+            setIsLoading(false)
         }
     }
 
@@ -54,18 +61,44 @@ const Upload = ({ toggleUpload, onUploadSuccess }) => {
             <div className={styles.uploadTab}>
                 <div className={styles.overlay} onClick={toggleUpload}></div>
                 <div className={styles.content}>
-                    <h2>Upload image or video</h2>
+                    <h2>Add to your stash</h2>
+                    
+                    {/* Hidden native input */}
                     <input
                         type="file"
-                        className={styles.fileInput}
+                        ref={fileInputRef}
+                        className={styles.hiddenInput}
                         onChange={handleFileChange}
                     />
+
+                    {/* Custom trigger */}
+                    <button
+                        type="button"
+                        className={styles.customFileButton}
+                        onClick={() => fileInputRef.current.click()}
+                    >
+                        {userFile ? userFile.name : "Choose a photo or video"}
+                    </button>
+
                     <input
+                        className={styles.captionInput}
                         placeholder="Caption..."
+                        value={userCaption}
                         onChange={(e) => setUserCaption(e.target.value)}
                     />
-                    <button onClick={handleUpload}>Upload</button>
-                    <button onClick={toggleUpload}>Cancel</button>
+                    {errorMessage && (
+                        <p className={styles.errorMessage}>File and caption are required</p>
+                    )}
+
+                    <button onClick={handleUpload} className={isLoading? styles.uploadButtonLoading : styles.uploadButton} disabled={isLoading}>
+                        {isLoading ? (
+                            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%' }}>
+                            <span className={styles.spinner} /> Uploading...
+                            </span>
+                        ) : (
+                            'Upload'
+                        )}
+                    </button>
                 </div>
             </div>
         </>

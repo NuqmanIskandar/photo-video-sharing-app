@@ -9,7 +9,8 @@
 }
 
 .uploadTab .overlay {
-    background: rgba(49,49,49,0.8);
+    background: #5a5648;
+    opacity: 70%;
 }
 
 .uploadTab .content {
@@ -18,11 +19,105 @@
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
+    background: #FFFFFF;
+    padding: 28px 32px;
+    border-radius: 12px;
+    max-width: 800px;
+    min-width: 350px;
 
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.customFileButton {
+    width: 100%;
+    height: 100px;
+    padding: 10px 14px;
+    border: 1px dashed #DCD6C7;
+    border-radius: 8px;
+    background-color: #F5F3EC;
+    color: #908d85;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+.customFileButton:hover {
+    background-color: #f0eee5;
+}
+
+.uploadTab .content h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #2E332B;
+}
+
+.uploadTab .content .uploadButton {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    background-color: #6B8F71;
+    color: #FFFFFF;
+
+    transition: transform 0.1s ease, background-color 0.3s ease;
+}
+
+.uploadTab .content .uploadButton:hover {
+    background-color: #55715a;
+}
+
+.uploadTab .content .uploadButton:active {
+    transform: scale(0.925);
+}
+
+.uploadTab .content .uploadButtonLoading {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: default;
+    background-color: #55715a;
+    color: #FFFFFF;
+}
+
+.uploadTab .content .captionInput {
+    padding: 8px 16px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #F5F3EC;
+    border: 1px solid #DCD6C7;
+    color: #2E332B;
+    border-radius: 8px;
+}
+
+.uploadTab .content .captionInput:focus {
+    outline: 2px solid #c0bbad;
+}
+
+.uploadTab .content .errorMessage {
+    width: 100%;
+    text-align: center;
+    color: #B5544A;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
 }

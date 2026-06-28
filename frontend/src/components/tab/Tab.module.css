@@ -8,9 +8,10 @@
 
 .tabContainer button {
     padding: 8px 20px;
-    border: none;
+    border: 1px solid #DCD6C7;
     font-size: 14px;
-    background-color: #EDE1DE;
+    background-color: #F5F3EC;
+    color: #2E332B;
     border-radius: 8px;
     cursor: pointer;
 
@@ -18,7 +19,7 @@
 }
 
 .tabContainer button:hover {
-    background-color: #865346;
+    background-color: #2E332B;
     color: #FFFFFF;
 }
 
@@ -27,6 +28,16 @@
 }
 
 .tabContainer button.active {
-    background-color: #865346;
+    background-color: #2E332B;
     color: #FFFFFF;
+}
+
+.tabContainer .addButton {
+    background-color: #6B8F71;
+    color: #FFFFFF;
+    border: none;
+}
+
+.tabContainer .addButton:hover {
+    background-color: #55715a;
 }

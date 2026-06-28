@@ -9,7 +9,8 @@
 }
 
 .deleteTab .overlay {
-    background: rgba(49,49,49,0.8);
+    background: #5a5648;
+    opacity: 70%;
 }
 
 .deleteTab .content {
@@ -18,18 +19,21 @@
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
+    background: #FFFFFF;
+    padding: 28px 32px;
+    border-radius: 12px;
+    max-width: 800px;
+    min-width: 350px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
 }
 
 .deleteTab .content .buttonWrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +41,64 @@
 }
 
 .deleteTab .content .buttonWrapper button {
-    padding: 4px;
+    padding: 6px 0;
     font-size: 16px;
+    flex: 0 0 50%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.3s ease;
+}
+
+.deleteTab .content .buttonWrapper .cancel {
+    background-color: #FFFFFF;
+    border: 1px solid #DCD6C7;
+    color: #2E332B;
+}
+
+.deleteTab .content .buttonWrapper .cancel:hover {
+    background-color: #eeeeee;
+}
+
+.deleteTab .content .buttonWrapper .cancel:active, .deleteTab .content .buttonWrapper .yesNoLoading:active {
+    transform: scale(0.925);
+}
+
+.deleteTab .content .buttonWrapper .yesNoLoading {
+    background-color: #B5544A;
+    border: 1px solid #B5544A;
+    color: #FFFFFF;
+}
+
+.deleteTab .content .buttonWrapper .yesLoading {
+    background-color: #a14b41;
+    border: 1px solid #a14b41;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.deleteTab .content .buttonWrapper .yesNoLoading:hover {
+    background-color: #a14b41;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+.deleteTab .content .header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #2E332B;
 }
