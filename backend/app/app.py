@@ -71,7 +71,7 @@ async def upload_file(
         file_id=upload_result.file_id,
         file_type = "video" if (file.content_type or "").startswith("video/") else "image",
         file_name =  upload_result.file_name,
-        created_at = datetime.now().isoformat()
+        created_at = datetime.now()
     )
 
     try:

@@ -44,15 +44,15 @@ const Upload = ({ toggleUpload, onUploadSuccess }) => {
             console.log(data)
 
             // reset form
-            setUserFile(null)
-            setUserCaption("")
             await onUploadSuccess()
-            toggleUpload()
-            setIsLoading(false)
+            await toggleUpload()
+            await setUserFile(null)
+            await setUserCaption("")
+            await setIsLoading(false)
 
         } catch (err) {
-            console.error("Error:", err)
             setIsLoading(false)
+            console.error("Error:", err)
         }
     }
 

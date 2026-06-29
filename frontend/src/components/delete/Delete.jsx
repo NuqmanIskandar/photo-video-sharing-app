@@ -20,9 +20,9 @@ const Delete = ({ toggleDelete, postDelete, onDeleteSuccess }) => {
                 const errorData = await res.json()
                 throw new Error(errorData.detail || "Failed to delete post")
             }
-            onDeleteSuccess()
-            toggleDelete()
-            setIsLoading(false)
+            await onDeleteSuccess()
+            await toggleDelete()
+            await setIsLoading(false)
         } catch (err) {
             setIsLoading(false)
             console.error("Error:", err)

@@ -1,4 +1,5 @@
 from imagekitio import ImageKit
+import psycopg2.extras
 from app.models import UploadResponse, Post
 from app.database import get_conn
 from pathlib import Path
@@ -28,33 +29,41 @@ def upload_to_imagekit(filepath) -> UploadResponse:
 
 def add_to_database(post):
     conn = get_conn()
-    conn.execute(
+    cur = conn.cursor()
+    cur.execute(
         """
             INSERT INTO posts (id, username, caption, url, file_id, file_type, file_name, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """,
         (post.id, post.username, post.caption, post.url, post.file_id, post.file_type, post.file_name, post.created_at)
     )
     conn.commit()
+    cur.close()
     conn.close()
 
 # Get post by username
 def get_posts(username) -> list[Post]:
     conn = get_conn()
-    rows = conn.execute(
-        "SELECT * FROM posts WHERE username = ? ORDER BY created_at",
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute(
+        "SELECT * FROM posts WHERE username = %s ORDER BY created_at",
         (username,)
-    ).fetchall()
+    )
+    rows = cur.fetchall()
+    cur.close()
     conn.close()
     return [Post(**dict(row)) for row in rows]
 
 # Get post by post id
 def get_post_by_id(post_id: str) -> Post:
     conn = get_conn()
-    row = conn.execute(
-        "SELECT * FROM posts WHERE id = ? ",
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute(
+        "SELECT * FROM posts WHERE id = %s",
         (post_id,)
-    ).fetchone()
+    )
+    row = cur.fetchone()
+    cur.close()
     conn.close()
     if row is None:
         return None
@@ -66,14 +75,17 @@ def delete_from_imagekit(file_id: str):
 
 def delete_post_from_database(post_id: str):
     conn = get_conn()
-    conn.execute("DELETE FROM posts WHERE id = ?", (post_id,))
+    cur = conn.cursor()
+    cur.execute("DELETE FROM posts WHERE id = %s", (post_id,))
     conn.commit()
+    cur.close()
     conn.close()
 
 def get_all_posts() -> list[Post]:
     conn = get_conn()
-    rows = conn.execute(
-        "SELECT * FROM posts ORDER BY created_at"
-    ).fetchall()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cur.execute("SELECT * FROM posts ORDER BY created_at")
+    rows = cur.fetchall()
+    cur.close()
     conn.close()
     return [Post(**dict(row)) for row in rows]

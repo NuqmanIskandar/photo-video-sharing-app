@@ -5,7 +5,7 @@ import { useState } from "react"
 const Signup = ({ toggleSignup }) => {
 
     const [username, setUsername] = useState("")
-    const [fullName, setFullName] = useState("")
+    const [full_name, setFullName] = useState("")
     const [password, setPassword] = useState("")
 
     const { login } = useAuth()
@@ -15,7 +15,7 @@ const Signup = ({ toggleSignup }) => {
             const res = await fetch("http://localhost:3000/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, fullName, password })
+                body: JSON.stringify({ username, full_name, password })
             })
 
             if (!res.ok) {
