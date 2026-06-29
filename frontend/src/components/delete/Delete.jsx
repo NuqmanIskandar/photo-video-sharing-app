@@ -1,4 +1,5 @@
 import styles from './Delete.module.css'
+import { API_BASE_URL } from "../../config"
 import { useState } from 'react'
 
 const Delete = ({ toggleDelete, postDelete, onDeleteSuccess }) => {
@@ -9,7 +10,7 @@ const Delete = ({ toggleDelete, postDelete, onDeleteSuccess }) => {
         setIsLoading(true)
         try  { 
             const token = localStorage.getItem("token")
-            const res = await fetch(`http://localhost:3000/posts/${postDelete}`, {
+            const res = await fetch(`${API_BASE_URL}/posts/${postDelete}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -22,7 +23,7 @@ const Delete = ({ toggleDelete, postDelete, onDeleteSuccess }) => {
             }
             await onDeleteSuccess()
             await toggleDelete()
-            await setIsLoading(false)
+            awaitsetIsLoading(false)
         } catch (err) {
             setIsLoading(false)
             console.error("Error:", err)

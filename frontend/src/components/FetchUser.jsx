@@ -1,8 +1,10 @@
+import { API_BASE_URL } from "../config"
+
 const FetchUser = async ({ setUser }) => {
     try {
         const token = localStorage.getItem("token")
 
-        const res = await fetch("http://localhost:3000/me", {
+        const res = await fetch(`${API_BASE_URL}/me`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,

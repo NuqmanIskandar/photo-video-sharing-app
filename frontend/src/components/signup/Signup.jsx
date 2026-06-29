@@ -1,4 +1,5 @@
 import styles from "./Signup.module.css"
+import { API_BASE_URL } from "../../config"
 import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
@@ -12,7 +13,7 @@ const Signup = ({ toggleSignup }) => {
 
     const handleSignup = async () => {
         try {
-            const res = await fetch("http://localhost:3000/register", {
+            const res = await fetch(`${API_BASE_URL}/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, full_name, password })
@@ -28,7 +29,7 @@ const Signup = ({ toggleSignup }) => {
             params.append("username", username)
             params.append("password", password)
 
-            const loginRes = await fetch("http://localhost:3000/login", {
+            const loginRes = await fetch(`${API_BASE_URL}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: params,

@@ -7,6 +7,7 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import Upload from "./components/Upload/Upload"
 import Delete from "./components/delete/Delete"
+import { API_BASE_URL } from "./config"
 import { AuthProvider } from './components/AuthContext/AuthContext'
 import { useState, useEffect } from 'react'
 
@@ -60,7 +61,7 @@ const App = () => {
 
   // For Feed
   const fetchFeed = async () => {
-    const response = await fetch("http://0.0.0.0:3000/feed")
+    const response = await fetch(`${API_BASE_URL}/feed`)
     const data = await response.json()
     setFeedPosts(data)
   }
@@ -69,7 +70,7 @@ const App = () => {
   const fetchMyPosts = async () => {
     try {
         const token = localStorage.getItem("token")
-        const res = await fetch("http://localhost:3000/posts", {
+        const res = await fetch(`${API_BASE_URL}/posts`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,

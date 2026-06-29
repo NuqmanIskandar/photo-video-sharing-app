@@ -1,4 +1,5 @@
 import styles from "./Login.module.css"
+import { API_BASE_URL } from "../../config"
 import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
@@ -17,7 +18,7 @@ const Login = ({ toggleLogin, toggleSignup }) => {
             params.append("username", username)
             params.append("password", password)
 
-            const res = await fetch("http://localhost:3000/login", {
+            const res = await fetch(`${API_BASE_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",

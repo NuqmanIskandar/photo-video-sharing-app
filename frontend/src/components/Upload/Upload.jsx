@@ -1,4 +1,5 @@
 import { useState, useRef } from "react"
+import { API_BASE_URL } from "../../config"
 import styles from "./Upload.module.css"
 
 const Upload = ({ toggleUpload, onUploadSuccess }) => {
@@ -29,7 +30,7 @@ const Upload = ({ toggleUpload, onUploadSuccess }) => {
             formData.append("caption", userCaption)
             const token = localStorage.getItem("token")
 
-            const res = await fetch("http://localhost:3000/upload", {
+            const res = await fetch(`${API_BASE_URL}/upload`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`
