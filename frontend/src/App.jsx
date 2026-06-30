@@ -118,7 +118,15 @@ const App = () => {
   return (
     <AuthProvider>
       <div className='wrapper'>
-        <Navbar toggleLogin={toggleLogin} toggleSignup={toggleSignup} user={user} setUser={setUser} setFeedFlag={setFeedFlag} setIsLoginLoading={setIsLoginLoading}/>
+        <Navbar
+          toggleLogin={toggleLogin}
+          toggleSignup={toggleSignup}
+          user={user}
+          setUser={setUser}
+          setFeedFlag={setFeedFlag}
+          setIsLoginLoading={setIsLoginLoading}
+          setIsSignupLoading={setSignupLoading}
+        />
         <Tab feedFlag={feedFlag} setFeedFlag={setFeedFlag} toggleUpload={toggleUpload}/>
 
         {isMainLoading ? ( <Loading/> ) : 

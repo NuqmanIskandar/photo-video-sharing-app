@@ -3,7 +3,7 @@ import FetchUser from "../FetchUser"
 import { useAuth } from "../AuthContext/AuthContext"
 import { useEffect } from "react"
 
-const Navbar = ({ toggleLogin, toggleSignup, user, setUser, setFeedFlag, setIsLoginLoading }) => {
+const Navbar = ({ toggleLogin, toggleSignup, user, setUser, setFeedFlag, setIsLoginLoading, setIsSignupLoading }) => {
 
     const { isAuth, logout } = useAuth()
 
@@ -11,6 +11,7 @@ const Navbar = ({ toggleLogin, toggleSignup, user, setUser, setFeedFlag, setIsLo
         logout()
         setUser("")
         setFeedFlag(true)
+        setIsSignupLoading(false)
         setIsLoginLoading(false)
     }
 
