@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../config"
 import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
-const Signup = ({ toggleSignup }) => {
+const Signup = ({ toggleSignup, isLoading, setIsLoading }) => {
 
     const [username, setUsername] = useState("")
     const [full_name, setFullName] = useState("")
@@ -12,6 +12,7 @@ const Signup = ({ toggleSignup }) => {
     const { login } = useAuth()
 
     const handleSignup = async () => {
+        setIsLoading(true)
         try {
             const res = await fetch(`${API_BASE_URL}/register`, {
                 method: "POST",
@@ -39,8 +40,10 @@ const Signup = ({ toggleSignup }) => {
 
             const loginData = await loginRes.json()
             login(loginData.access_token)
-            toggleSignup()
+            await setIsLoading(true)
+            await toggleSignup()
         } catch (err) {
+            setIsLoading(true)
             console.error("Signup error:", err)
         }
     }
@@ -72,7 +75,15 @@ const Signup = ({ toggleSignup }) => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
                             />
-                           <button className={styles.signupButton} onClick={handleSignup}>Sign up</button>
+                           <button className={`${styles.buttonSignup} ${isLoading ? styles.loading : styles.notLoading}`} onClick={handleSignup} disabled={isLoading}>
+                                {isLoading ? (
+                                        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%' }}>
+                                        <span className={styles.spinner} /> Loading...
+                                        </span>
+                                    ) : (
+                                        'Create account'
+                                )}
+                            </button>
                         </div>
                     </div>
                 </div>

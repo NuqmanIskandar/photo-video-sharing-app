@@ -7,6 +7,7 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import Upload from "./components/Upload/Upload"
 import Delete from "./components/delete/Delete"
+import Loading from "./components/Loading/Loading"
 import { API_BASE_URL } from "./config"
 import { AuthProvider } from './components/AuthContext/AuthContext'
 import { useState, useEffect } from 'react'
@@ -22,8 +23,13 @@ const App = () => {
 
   const [feedPosts, setFeedPosts] = useState([])
   const [posts, setPosts] = useState([])
-
   const [postDelete, setPostDelete] = useState("")
+
+  const [isMainLoading, setIsMainLoading] = useState(false)
+  const [isUploadLoading, setIsUploadLoading] = useState(false)
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false)
+  const [isLoginLoading, setIsLoginLoading] = useState(false)
+  const [isSignupLoading, setSignupLoading] = useState(false)
 
   const toggleLogin = () => {
     setLoginTab(!loginTab)
@@ -93,27 +99,78 @@ const App = () => {
     await fetchFeed()
   }
 
-  useEffect(() => {
+  const loadScreen = async () => {
+    setIsMainLoading(true)
     setPostDelete("")
     if (user) {
-      fetchMyPosts()
+      await fetchMyPosts()
     } else {
       setPosts([])
     }
-    fetchFeed()
+    await fetchFeed()
+    await setIsMainLoading(false)
+  }
+
+  useEffect(() => {
+    loadScreen()
   }, [user])
 
   return (
     <AuthProvider>
       <div className='wrapper'>
-        <Navbar toggleLogin={toggleLogin} toggleSignup={toggleSignup} user={user} setUser={setUser} setFeedFlag={setFeedFlag}/>
+        <Navbar toggleLogin={toggleLogin} toggleSignup={toggleSignup} user={user} setUser={setUser} setFeedFlag={setFeedFlag} setIsLoginLoading={setIsLoginLoading}/>
         <Tab feedFlag={feedFlag} setFeedFlag={setFeedFlag} toggleUpload={toggleUpload}/>
-        {feedFlag ? ( <Feed posts={feedPosts}/> ) : ( <Myposts posts={posts} toggleDelete={toggleDelete} setPostDelete={setPostDelete}/> )}
+
+        {isMainLoading ? ( <Loading/> ) : 
+          feedFlag ? (
+            <Feed posts={feedPosts}/>
+          ) 
+          : (
+            <Myposts
+              posts={posts}
+              toggleDelete={toggleDelete}
+              setPostDelete={setPostDelete}
+            />
+          )
+        }
+        
       </div>
-      {loginTab && <Login toggleLogin={toggleLogin} toggleSignup={toggleSignup}/>}
-      {signupTab && <Signup toggleSignup={toggleSignup}/>}
-      {uploadTab && <Upload toggleUpload={toggleUpload} onUploadSuccess={handleUploadSuccess}/>}
-      {deleteTab && <Delete toggleDelete={toggleDelete} postDelete={postDelete} onDeleteSuccess={handleUploadSuccess}/>} {/* can just use the same as upload since it just fetch (maybe find a better name later) */}
+
+      {loginTab &&
+      <Login
+        toggleLogin={toggleLogin}
+        toggleSignup={toggleSignup}
+        isLoading={isLoginLoading}
+        setIsLoading={setIsLoginLoading}
+      />
+      }
+
+      {signupTab &&
+      <Signup
+        toggleSignup={toggleSignup}
+        isLoading={isSignupLoading}
+        setIsLoading={setSignupLoading}
+      />
+      }
+
+      {uploadTab &&
+        <Upload
+          toggleUpload={toggleUpload}
+          onUploadSuccess={handleUploadSuccess}
+          isLoading={isUploadLoading}
+          setIsLoading={setIsUploadLoading}
+        />
+      }
+      
+      {deleteTab &&
+        <Delete 
+          toggleDelete={toggleDelete}
+          postDelete={postDelete}
+          onDeleteSuccess={handleUploadSuccess}
+          isLoading={isDeleteLoading}
+          setIsLoading={setIsDeleteLoading}
+        />
+      }
     </AuthProvider>
   )
 }

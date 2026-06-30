@@ -2,9 +2,7 @@ import styles from './Delete.module.css'
 import { API_BASE_URL } from "../../config"
 import { useState } from 'react'
 
-const Delete = ({ toggleDelete, postDelete, onDeleteSuccess }) => {
-
-    const [isLoading, setIsLoading] = useState(false)
+const Delete = ({ toggleDelete, postDelete, onDeleteSuccess, isLoading, setIsLoading }) => {
 
     const handleDeletePost = async () => {
         setIsLoading(true)

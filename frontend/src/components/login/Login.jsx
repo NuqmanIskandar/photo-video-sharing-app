@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../config"
 import { useAuth } from "../AuthContext/AuthContext"
 import { useState } from "react"
 
-const Login = ({ toggleLogin, toggleSignup }) => {
+const Login = ({ toggleLogin, toggleSignup, isLoading, setIsLoading }) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -12,6 +12,7 @@ const Login = ({ toggleLogin, toggleSignup }) => {
     const { login } = useAuth()
 
     const handleLogin = async () => {
+        setIsLoading(true)
         try {
             const params = new URLSearchParams()
             params.append("grant_type", "password")
@@ -33,9 +34,10 @@ const Login = ({ toggleLogin, toggleSignup }) => {
 
             const data = await res.json()
             login(data.access_token)
-            toggleLogin()
+            await toggleLogin()
         } catch(err) {
             console.error("Login error:", err)
+            setIsLoading(false)
             setErrorMessage(true)
         }
     }
@@ -67,7 +69,15 @@ const Login = ({ toggleLogin, toggleSignup }) => {
                                 {errorMessage && (
                                     <span className={styles.errorMessage}>Invalid username or password</span>
                                 )}
-                                <button onClick={handleLogin}>Log in</button>
+                                <button onClick={handleLogin} className={`${styles.buttonLogin} ${isLoading ? styles.loading : styles.notLoading}`} disabled={isLoading}>
+                                    {isLoading ? (
+                                            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%' }}>
+                                            <span className={styles.spinner} /> Loading...
+                                            </span>
+                                        ) : (
+                                            'Login'
+                                    )}
+                                </button>
                                 <span className={styles.registerHere}>No account? <a onClick={toggleSignup}>Register</a></span>
                             </div>
                         </div>

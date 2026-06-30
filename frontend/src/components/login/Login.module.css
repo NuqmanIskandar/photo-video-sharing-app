@@ -71,7 +71,7 @@
     outline: 2px solid #c0bbad;
 }
 
-.loginTab .loginContainer .fieldWrapper .field button {
+.loginTab .loginContainer .fieldWrapper .field .buttonLogin.notLoading {
     padding: 8px 0;
     font-size: 16px;
     border-radius: 8px;
@@ -84,12 +84,23 @@
     transition: transform 0.1s ease, background-color 0.3s ease;
 }
 
-.loginTab .loginContainer .fieldWrapper .field button:hover {
+.loginTab .loginContainer .fieldWrapper .field .buttonLogin.notLoading:hover {
     background-color: #55715a;
 }
 
-.loginTab .loginContainer .fieldWrapper .field button:active {
+.loginTab .loginContainer .fieldWrapper .field .buttonLogin.notLoading:active {
     transform: scale(0.925);
+}
+
+.loginTab .loginContainer .fieldWrapper .field .buttonLogin.loading {
+    padding: 8px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #55715a;
+    color: #FFFFFF;
+    width: 100%;
+    cursor: default;
 }
 
 .loginTab .loginContainer .fieldWrapper .field {
@@ -107,4 +118,18 @@
     color: #55715a;
     text-decoration: underline;
     cursor: pointer;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
 }

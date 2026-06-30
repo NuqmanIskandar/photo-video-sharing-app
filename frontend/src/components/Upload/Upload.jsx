@@ -2,13 +2,12 @@ import { useState, useRef } from "react"
 import { API_BASE_URL } from "../../config"
 import styles from "./Upload.module.css"
 
-const Upload = ({ toggleUpload, onUploadSuccess }) => {
+const Upload = ({ toggleUpload, onUploadSuccess, isLoading, setIsLoading }) => {
 
     const fileInputRef = useRef(null)
     const [userFile, setUserFile] = useState(null)
     const [userCaption, setUserCaption] = useState("")
     const [errorMessage, setErrorMessage] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]

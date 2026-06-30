@@ -75,7 +75,7 @@
     outline: 2px solid #c0bbad;
 }
 
-.signupTab .signupContainer .fieldWrapper button {
+.signupTab .signupContainer .fieldWrapper .buttonSignup.notLoading {
     padding: 8px 0;
     font-size: 16px;
     border-radius: 8px;
@@ -88,10 +88,36 @@
     transition: transform 0.1s ease, background-color 0.3s ease;
 }
 
-.signupTab .signupContainer .fieldWrapper button:hover {
+
+.signupTab .signupContainer .fieldWrapper .buttonSignup.notLoading:hover {
     background-color: #55715a;
 }
 
-.signupTab .signupContainer .fieldWrapper button:active {
+.signupTab .signupContainer .fieldWrapper .buttonSignup.notLoading:active {
     transform: scale(0.925);
+}
+
+.signupTab .signupContainer .fieldWrapper .buttonSignup.loading {
+    padding: 8px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #55715a;
+    color: #FFFFFF;
+    width: 100%;
+    cursor: default;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
 }

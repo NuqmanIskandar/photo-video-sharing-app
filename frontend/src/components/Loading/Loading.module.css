@@ -1,0 +1,32 @@
+.loadingScreen .content {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #FFFFFF;
+    padding: 28px 32px;
+    border-radius: 12px;
+    max-width: 800px;
+    min-width: 350px;
+}
+
+.loader {
+    border: 12px solid #DCD6C7;
+    border-top: 12px solid #6B8F71;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
