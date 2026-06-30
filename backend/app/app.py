@@ -17,7 +17,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Photo Video Sharing App", lifespan=lifespan)
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://photo-video-sharing-app.vercel.app"
 ]
 
 app.add_middleware(
